@@ -1,0 +1,9 @@
+type Investigation @model {
+  id: ID!
+  mode: String!
+  status: String!
+  occID : String
+  occYear : String
+  reportTitle: String
+  pubDate : String
+}
