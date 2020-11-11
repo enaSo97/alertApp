@@ -6,10 +6,12 @@ export const onCreateInvestigation = /* GraphQL */ `
     onCreateInvestigation {
       id
       mode
+      reportTitle
       status
+      model
+      location
       occID
       occYear
-      reportTitle
       pubDate
       createdAt
       updatedAt
@@ -21,10 +23,12 @@ export const onUpdateInvestigation = /* GraphQL */ `
     onUpdateInvestigation {
       id
       mode
+      reportTitle
       status
+      model
+      location
       occID
       occYear
-      reportTitle
       pubDate
       createdAt
       updatedAt
@@ -36,10 +40,12 @@ export const onDeleteInvestigation = /* GraphQL */ `
     onDeleteInvestigation {
       id
       mode
+      reportTitle
       status
+      model
+      location
       occID
       occYear
-      reportTitle
       pubDate
       createdAt
       updatedAt

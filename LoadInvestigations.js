@@ -16,12 +16,22 @@ const parseOccId = (occId) => {
     return baseUrl + href
 }
 
+var stringToHTML = function (str) {
+	var parser = new DOMParser();
+	var doc = parser.parseFromString(str, 'text/html');
+	return doc.body;
+};
+
 const parseReportTitle = (reportTitle) => {
+    var htmlReportTitle = stringToHTML(reportTitle)
+    console.log(htmlReportTitle)
     const reportObj = {
-        title : "",
-        location : "",
-        
+        title : htmlReportTitle.firstElementChild.children[0].innerHTML,
+        model : htmlReportTitle.firstElementChild.children[1].nextSibling.textContent,
+        location : htmlReportTitle.firstElementChild.children[2].nextSibling.textContent,
     }
+    //console.log(reportObj)
+    return reportObj
 }
 
 
@@ -30,9 +40,11 @@ function getInvestiation() {
 }
 
 async function addInvestigation(item, mode){
-
+    const parsedTitle = parseReportTitle(item.ReportTitle)
     const investigation = {
-        reportTitle: item.ReportTitle,
+        reportTitle: parsedTitle.title,
+        model : parsedTitle.model,
+        location : parsedTitle.location,
         status: item.status,
         occID: parseOccId(item.occID),
         occYear: item.occYear,
@@ -41,7 +53,6 @@ async function addInvestigation(item, mode){
 
     }
     try {
-        
         await API.graphql(graphqlOperation(createInvestigation, { input: investigation }))
         console.log("Success creating Investigation: ", investigation)
     } catch (err) { console.log("error creating investigation GraphQL: ", err) }
@@ -51,10 +62,12 @@ const InvestigationsLoadToDB = async (object, mode, callback) => {
     getInvestiation()
         .then(evt => {
             const items = evt.data.listInvestigations.items
-            console.log(object)
-            console.log(items)
+            const newObjTitle = parseReportTitle(object.data[0].ReportTitle)
+            //console.log(object)
+            //console.log(items)
             if (items.length > 0) {
-                (items[0].reportTitle != object.data[0].reportTitle)
+                console.log(items[0].reportTitle, newObjTitle.title);
+                (items[0].reportTitle != newObjTitle.title)
                 ? function (items){
                     console.log("adding investigations")
                     for (var i = 0; i < 10; i++){

@@ -1,9 +1,11 @@
 type Investigation @model {
   id: ID!
   mode: String!
-  status: String!
+  reportTitle: String
+  status: String
+  model : String
+  location : String
   occID : String
   occYear : String
-  reportTitle: String
   pubDate : String
 }

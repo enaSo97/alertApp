@@ -6,10 +6,12 @@ export const getInvestigation = /* GraphQL */ `
     getInvestigation(id: $id) {
       id
       mode
+      reportTitle
       status
+      model
+      location
       occID
       occYear
-      reportTitle
       pubDate
       createdAt
       updatedAt
@@ -26,10 +28,12 @@ export const listInvestigations = /* GraphQL */ `
       items {
         id
         mode
+        reportTitle
         status
+        model
+        location
         occID
         occYear
-        reportTitle
         pubDate
         createdAt
         updatedAt

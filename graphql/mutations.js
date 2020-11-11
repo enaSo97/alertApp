@@ -9,10 +9,12 @@ export const createInvestigation = /* GraphQL */ `
     createInvestigation(input: $input, condition: $condition) {
       id
       mode
+      reportTitle
       status
+      model
+      location
       occID
       occYear
-      reportTitle
       pubDate
       createdAt
       updatedAt
@@ -27,10 +29,12 @@ export const updateInvestigation = /* GraphQL */ `
     updateInvestigation(input: $input, condition: $condition) {
       id
       mode
+      reportTitle
       status
+      model
+      location
       occID
       occYear
-      reportTitle
       pubDate
       createdAt
       updatedAt
@@ -45,10 +49,12 @@ export const deleteInvestigation = /* GraphQL */ `
     deleteInvestigation(input: $input, condition: $condition) {
       id
       mode
+      reportTitle
       status
+      model
+      location
       occID
       occYear
-      reportTitle
       pubDate
       createdAt
       updatedAt
