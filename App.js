@@ -7,13 +7,19 @@ import config from './aws-exports'
 import LoadInvestigations from './LoadInvestigations';
 Amplify.configure(config)
 
+import BottomNav from './components/BottomNav'
+
+
 export default function App() {
   LoadInvestigations()
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <div>
+      <View style={styles.container}>
+        <Text>Open up App.js to start working on your app!</Text>
+        <StatusBar style="auto" />
+      </View>
+      <BottomNav />
+    </div>
   );
 }
 

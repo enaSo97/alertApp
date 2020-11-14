@@ -86,20 +86,23 @@ const InvestigationsLoadToDB = async (object, mode, callback) => {
 }
 
 
-function loadAirInvestigations() {
-    const url = "https://www.tsb.gc.ca/includes/ajax/AIR-object-EN.txt?_=1603834435895";
+function loadAirInvestigations(url, mode) {
+    //const url = "https://www.tsb.gc.ca/includes/ajax/AIR-object-EN.txt?_=1603834435895";
     const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
     let x = new XMLHttpRequest();
     x.open("GET", cors_api_url + url);
 
     x.onload = x.onerror = function () {
         const air_investigation = JSON.parse(x.responseText)
-        InvestigationsLoadToDB(air_investigation, "Air" , addInvestigation)
+        InvestigationsLoadToDB(air_investigation, mode , addInvestigation)
     };
     x.send();
 }
 
 
+
 export default function LoadInvestigations() {
-    loadAirInvestigations()
+    loadAirInvestigations("https://www.tsb.gc.ca/includes/ajax/AIR-object-EN.txt?_=1603834435895", "Air")
+    loadAirInvestigations("https://www.tsb.gc.ca/includes/ajax/MARINE-object-EN.txt?_=1603834435895", "Marine")
 }
+p
